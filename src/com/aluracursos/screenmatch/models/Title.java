@@ -20,6 +20,10 @@ public class Title {
         this.durationInMinutes = durationInMinutes;
     }
 
+    public int getDurationInMinutes() {
+        return durationInMinutes;
+    }
+
     public void setMembershipIncluded(boolean membershipIncluded) {
         this.membershipIncluded = membershipIncluded;
     }
@@ -32,7 +36,7 @@ public class Title {
     public void displayMovieSpecs() {
         System.out.printf("\n\nThe movie name is: %s", name);
         System.out.printf("\nIt's release date is: %d", releaseDate);
-        System.out.printf("\nIt's duration in minutes is: %d", durationInMinutes);
+        System.out.printf("\nIt's duration in minutes is: %d", getDurationInMinutes());
     }
 
     public void rateMovie(double rating) {

@@ -1,3 +1,4 @@
+import com.alura.screenmatch.calculators.TimestampCalculator;
 import com.aluracursos.screenmatch.models.Movie;
 import com.aluracursos.screenmatch.models.Serie;
 
@@ -22,15 +23,20 @@ public class Main {
         houseOfDragon.setMinutesPerEpisode(50);
         houseOfDragon.setEpisodesPerSeason(10);
         houseOfDragon.displayMovieSpecs();
-        System.out.printf("\nTotal");
 
+        Movie starWarsEp3 = new Movie();
+        starWarsEp3.setName("Star Wars Episode 3: Revenge of the Sith");
+        starWarsEp3.setReleaseDate(2005);
+        starWarsEp3.setDurationInMinutes(140);
+        starWarsEp3.setMembershipIncluded(false);
 
-//        Movie starWarsEp3 = new Movie();
-//        starWarsEp3.name = "Star Wars Episode 3: Revenge of the Sith";
-//        starWarsEp3.releaseDate = 2005;
-//        starWarsEp3.durationInMinutes = 140;
-//        starWarsEp3.membershipIncluded = false;
-//
-//        starWarsEp3.displayMovieSpecs();
+        starWarsEp3.displayMovieSpecs();
+
+        TimestampCalculator calculator = new TimestampCalculator();
+        calculator.mediaList(deadpool);
+        calculator.mediaList(houseOfDragon);
+        calculator.mediaList(starWarsEp3);
+        System.out.printf("\n\nTotal time to finish list: %d minutes", calculator.getTotalTime());
+
     }
 }
