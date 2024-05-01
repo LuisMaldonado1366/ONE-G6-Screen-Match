@@ -1,4 +1,6 @@
-import com.alura.screenmatch.calculators.TimestampCalculator;
+import com.aluracursos.screenmatch.calculators.RecommendationFilter;
+import com.aluracursos.screenmatch.calculators.TimestampCalculator;
+import com.aluracursos.screenmatch.models.Episode;
 import com.aluracursos.screenmatch.models.Movie;
 import com.aluracursos.screenmatch.models.Serie;
 
@@ -37,6 +39,17 @@ public class Main {
         calculator.mediaList(houseOfDragon);
         calculator.mediaList(starWarsEp3);
         System.out.printf("\n\nTotal time to finish list: %d minutes", calculator.getTotalTime());
+
+        RecommendationFilter recommendationFilter = new RecommendationFilter();
+        recommendationFilter.filter(deadpool);
+
+        Episode episode = new Episode();
+        episode.setEpisodeNumber(1);
+        episode.setEpisodeName("House Targaryen");
+        episode.setSerie(houseOfDragon);
+        episode.setTotalVisualizations(50);
+
+        recommendationFilter.filter(episode);
 
     }
 }

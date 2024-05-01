@@ -1,4 +1,4 @@
-package com.alura.screenmatch.calculators;
+package com.aluracursos.screenmatch.calculators;
 import com.aluracursos.screenmatch.models.Title;
 
 public class TimestampCalculator {
