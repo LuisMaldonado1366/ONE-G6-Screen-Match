@@ -4,6 +4,8 @@ import com.aluracursos.screenmatch.models.Episode;
 import com.aluracursos.screenmatch.models.Movie;
 import com.aluracursos.screenmatch.models.Serie;
 
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
         Movie deadpool = new Movie();
@@ -50,6 +52,23 @@ public class Main {
         episode.setTotalVisualizations(50);
 
         recommendationFilter.filter(episode);
+
+        var treasurePlanet = new Movie();
+        treasurePlanet.setName("Treasure planet");
+        treasurePlanet.setDurationInMinutes(95);
+        treasurePlanet.setReleaseDate(2022);
+
+        ArrayList<Movie> movieArrayList = new ArrayList<>();
+        movieArrayList.add(deadpool);
+        movieArrayList.add(starWarsEp3);
+        movieArrayList.add(treasurePlanet);
+
+        System.out.println("\n\n**********************");
+        System.out.println("Array movie list lenght: " + movieArrayList.size());
+        System.out.println("The first movie of the list is: " + movieArrayList.get(0).getName());
+
+        System.out.println(movieArrayList);
+        System.out.println("toString override = " + movieArrayList.get(0).toString());
 
     }
 }

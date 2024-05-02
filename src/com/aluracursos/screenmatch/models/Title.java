@@ -8,12 +8,28 @@ public class Title {
     private double ratingsSum;
     private int totalRatings;
 
+    public String getName() {
+        return name;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
     public void setReleaseDate(int releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public int getReleaseDate() {
+        return releaseDate;
+    }
+
+    public boolean isMembershipIncluded() {
+        return membershipIncluded;
+    }
+
+    public double getRatingsSum() {
+        return ratingsSum;
     }
 
     public void setDurationInMinutes(int durationInMinutes) {
