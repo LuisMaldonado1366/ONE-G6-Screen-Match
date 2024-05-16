@@ -1,3 +1,5 @@
+package com.aluracursos.screenmatch.main;
+
 import com.aluracursos.screenmatch.calculators.RecommendationFilter;
 import com.aluracursos.screenmatch.calculators.TimestampCalculator;
 import com.aluracursos.screenmatch.models.Episode;
@@ -8,9 +10,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        Movie deadpool = new Movie();
-        deadpool.setName("Deadpool");
-        deadpool.setReleaseDate(2016);
+        Movie deadpool = new Movie("Deadpool", 2016);
         deadpool.setDurationInMinutes(108);
         deadpool.setMembershipIncluded(true);
 
@@ -20,17 +20,13 @@ public class Main {
         System.out.printf("\nTotal ratings: %d", deadpool.getTotalRatings());
         System.out.printf("\nAverage rating: %.2f", deadpool.calculateMean());
 
-        Serie houseOfDragon = new Serie();
-        houseOfDragon.setName("House of Dragon");
-        houseOfDragon.setReleaseDate(2022);
+        Serie houseOfDragon = new Serie("House of Dragon", 2022);
         houseOfDragon.setSeasons(1);
         houseOfDragon.setMinutesPerEpisode(50);
         houseOfDragon.setEpisodesPerSeason(10);
         houseOfDragon.displayMovieSpecs();
 
-        Movie starWarsEp3 = new Movie();
-        starWarsEp3.setName("Star Wars Episode 3: Revenge of the Sith");
-        starWarsEp3.setReleaseDate(2005);
+        Movie starWarsEp3 = new Movie("Star Wars Episode 3: Revenge of the Sith", 2005);
         starWarsEp3.setDurationInMinutes(140);
         starWarsEp3.setMembershipIncluded(false);
 
@@ -53,10 +49,8 @@ public class Main {
 
         recommendationFilter.filter(episode);
 
-        var treasurePlanet = new Movie();
-        treasurePlanet.setName("Treasure planet");
+        var treasurePlanet = new Movie("Treasure planet", 2002);
         treasurePlanet.setDurationInMinutes(95);
-        treasurePlanet.setReleaseDate(2022);
 
         ArrayList<Movie> movieArrayList = new ArrayList<>();
         movieArrayList.add(deadpool);
@@ -64,11 +58,10 @@ public class Main {
         movieArrayList.add(treasurePlanet);
 
         System.out.println("\n\n**********************");
-        System.out.println("Array movie list lenght: " + movieArrayList.size());
+        System.out.println("Array movie list length: " + movieArrayList.size());
         System.out.println("The first movie of the list is: " + movieArrayList.get(0).getName());
 
         System.out.println(movieArrayList);
         System.out.println("toString override = " + movieArrayList.get(0).toString());
-
     }
 }
