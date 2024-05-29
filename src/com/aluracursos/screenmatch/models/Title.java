@@ -17,6 +17,15 @@ public class Title implements Comparable<Title> {
         this.releaseDate = releaseDate;
     }
 
+    public Title(TitleOmdb omdbTitle) {
+        this.name = omdbTitle.title();
+        this.releaseDate = Integer.parseInt(omdbTitle.year());
+        this.durationInMinutes = Integer.parseInt(
+                omdbTitle.runtime()
+                        .replace("min", "")
+                        .trim());
+    }
+
     public String getName() {
         return name;
     }
@@ -81,9 +90,8 @@ public class Title implements Comparable<Title> {
 
     @Override
     public String toString() {
-        return "Title => " +
-                "Name: '" + name + '\'' +
-                ", Release year: " + releaseDate +
-                '}';
+        return  "Name: '" + name + "'\n" +
+                "Release year: " + releaseDate + '\n' +
+                "Duration: " + durationInMinutes + " minutes.";
     }
 }

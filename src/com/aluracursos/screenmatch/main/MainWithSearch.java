@@ -1,7 +1,10 @@
 package com.aluracursos.screenmatch.main;
 
 import com.aluracursos.screenmatch.models.Title;
+import com.aluracursos.screenmatch.models.TitleOmdb;
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.net.URI;
@@ -19,7 +22,8 @@ public class MainWithSearch {
         System.out.println("Enter a movie name: ");
         String userTitle = userInput.nextLine();
 
-        String url = "http://www.omdbapi.com/?apikey=83f3606b&t=" + userTitle;
+        String url = "http://www.omdbapi.com/?apikey=83f3606b&t=" +
+                userTitle.replace(" ", "&");
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -32,14 +36,23 @@ public class MainWithSearch {
             String json = response.body();
             System.out.println(json);
 
-            Gson gson = new Gson();
-            Title jsonTitle = gson.fromJson(json, Title.class);
+            Gson gson = new GsonBuilder()
+                    .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+                    .create();
 
+//            Gson gson = new Gson();
+//            Title jsonTitle = gson.fromJson(json, Title.class);
+//            System.out.println(jsonTitle);
+
+            TitleOmdb omdbTitle = gson.fromJson(json, TitleOmdb.class);
+            System.out.println(omdbTitle);
+            Title jsonTitle = new Title(omdbTitle);
             System.out.println(jsonTitle);
 
-
         } catch (IOException | InterruptedException | IllegalArgumentException e) {
-            throw new RuntimeException(e);
+//            throw new RuntimeException(e);
+            System.out.println(e.toString());
+
         }
     }
 }
