@@ -1,11 +1,10 @@
 package com.aluracursos.screenmatch.models;
 
+import com.aluracursos.screenmatch.exceptions.ErrorInDurationException;
 import com.google.gson.annotations.SerializedName;
 
 public class Title implements Comparable<Title> {
-    @SerializedName("Title")
     private String name;
-    @SerializedName("Year")
     private int releaseDate;
     private int durationInMinutes;
     private boolean membershipIncluded;
@@ -20,10 +19,22 @@ public class Title implements Comparable<Title> {
     public Title(TitleOmdb omdbTitle) {
         this.name = omdbTitle.title();
         this.releaseDate = Integer.parseInt(omdbTitle.year());
-        this.durationInMinutes = Integer.parseInt(
-                omdbTitle.runtime()
-                        .replace("min", "")
-                        .trim());
+        if (omdbTitle.runtime().contains("N/A")) {
+            throw  new ErrorInDurationException("Invalid duration format");
+        } else {
+            this.durationInMinutes = Integer.parseInt(
+                    omdbTitle.runtime()
+                            .replace("min", "")
+                            .trim());
+        }
+//        try{
+//            this.durationInMinutes = Integer.parseInt(
+//                    omdbTitle.runtime()
+//                            .replace("min", "")
+//                            .trim());
+//        } catch (NumberFormatException e) {
+//            this.durationInMinutes = 0;
+//        }
     }
 
     public String getName() {
@@ -90,8 +101,8 @@ public class Title implements Comparable<Title> {
 
     @Override
     public String toString() {
-        return  "Name: '" + name + "'\n" +
-                "Release year: " + releaseDate + '\n' +
-                "Duration: " + durationInMinutes + " minutes.";
+        return  "(Name: '" + name + "', " +
+                "Release year: " + releaseDate + ", " +
+                "Duration: " + durationInMinutes + " minutes)";
     }
 }
